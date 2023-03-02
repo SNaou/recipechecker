@@ -15,12 +15,11 @@ function capitalize(str) {
 }
 
 const RecipeList = ({ recipes, onSelect }) => {
-  console.log("RES", recipes);
   return (
     <Center>
       <Grid templateColumns="repeat(4, 1fr)" gap={8} p={6}>
         {recipes.map((recipe) => (
-          <GridItem key={recipe.recipe.uri} colSpan={1}>
+          <GridItem key={recipe.recipe.url} colSpan={1}>
             <Box
               borderWidth="0px"
               bg={"#FFF"}
@@ -37,7 +36,7 @@ const RecipeList = ({ recipes, onSelect }) => {
               />
               <Box p="6" h={300}>
                 <Center>
-                  <Box d="flex" align={"center"}>
+                  <Box d="flex" align="center">
                     <small>
                       {recipe.recipe.mealType.map((x) => x.toUpperCase())}
                     </small>
@@ -48,14 +47,14 @@ const RecipeList = ({ recipes, onSelect }) => {
                       {recipe.recipe.healthLabels
                         .filter((x) => x === "Vegan" || x === "Vegetarian")
                         .map((healthLabel) => (
-                          <Tag colorScheme="purple" m={1}>
+                          <Tag key={healthLabel} colorScheme="purple" m={1}>
                             {healthLabel}
                           </Tag>
                         ))}
                     </Box>
                     <Box>
                       {recipe.recipe.dietLabels.map((dietLabel) => (
-                        <Tag colorScheme="green" m={1}>
+                        <Tag key={dietLabel} colorScheme="green" m={1}>
                           {dietLabel}
                         </Tag>
                       ))}
@@ -71,7 +70,7 @@ const RecipeList = ({ recipes, onSelect }) => {
                     )}
                     <Box>
                       {recipe.recipe.cautions.map((caution) => (
-                        <Tag colorScheme="red" m={1}>
+                        <Tag key={caution} colorScheme="red" m={1}>
                           {caution}
                         </Tag>
                       ))}
