@@ -17,7 +17,10 @@ function capitalize(str) {
 const RecipeList = ({ recipes, onSelect }) => {
   return (
     <Center>
-      <Grid templateColumns="repeat(4, 1fr)" gap={8} p={6}>
+      <Grid
+        templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}
+        gap={8}
+        p={6}>
         {recipes.map((recipe) => (
           <GridItem key={recipe.recipe.url} colSpan={1}>
             <Box

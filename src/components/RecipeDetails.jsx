@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from "react";
 import {
   Container,
@@ -11,10 +10,12 @@ import {
   Text,
   Tag,
   Flex,
+  Button,
 } from "@chakra-ui/react";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 
 // RecipeDetails component
-const RecipeDetails = ({ recipe }) => {
+const RecipeDetails = ({ recipe, onBack }) => {
   const {
     label,
     image,
@@ -27,9 +28,33 @@ const RecipeDetails = ({ recipe }) => {
     totalTime,
   } = recipe;
 
-  const nutrients = Object.keys(totalNutrients).map((x) => totalNutrients[x]);
+  // Create an array of the nutrients that you want to display
+  const nutrientLabels = [
+    "ENERC_KCAL",
+    "PROCNT",
+    "FAT",
+    "CHOCDF",
+    "CHOLE",
+    "NA",
+  ];
+
+  // Filter the nutrients object to only include the nutrients that you want to display
+  const nutrients = Object.keys(totalNutrients)
+    .filter((nutrient) => nutrientLabels.includes(nutrient))
+    .map((nutrient) => totalNutrients[nutrient]);
+
   return (
-    <Container maxW="2xl" bgColor="#FFF" padding={0}>
+    <Container maxW="2xl" bgColor="#FFF" padding={0} marginBottom={0}>
+      <Flex alignItems="center" marginBottom="4">
+        <Button
+          colorScheme="teal"
+          variant="solid"
+          size="sm"
+          leftIcon={<ArrowBackIcon />}
+          onClick={onBack}>
+          Back to Recipes
+        </Button>
+      </Flex>
       <Image src={image} alt={label} h={150} w="100%" objectFit="cover" />
       <Grid templateColumns="repeat(6, 1fr)" gap={6}>
         <GridItem colSpan="3" padding="10">

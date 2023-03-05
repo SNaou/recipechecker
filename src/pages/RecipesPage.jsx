@@ -1,6 +1,5 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { Center, Input, Heading, Flex } from "@chakra-ui/react";
+import { Center, Input, Heading, Flex, Box } from "@chakra-ui/react";
 import { data } from "../utils/data";
 import RecipeList from "../components/RecipeList";
 import RecipeDetails from "../components/RecipeDetails";
@@ -19,19 +18,22 @@ const RecipesPage = () => {
   };
 
   return (
-    <Center bg={"#3A98B9"} px={50}>
-      <Flex flexDirection="column" justifyContent="center">
+    <Box bg={"#3A98B9"} minH="100vh">
+      <Flex
+        flexDirection="column"
+        justifyContent="center"
+        px={{ base: 4, md: 50 }}>
         {selectedRecipe ? (
           <RecipeDetails
             recipe={selectedRecipe}
             onBack={() => setSelectedRecipe(null)}
           />
         ) : (
-          <div>
+          <Box>
             <Flex justifyContent="center">
               <form>
-                <Heading color={"#FFF"} my={5}>
-                  Sous recipes checker
+                <Heading color={"#FFF"} my={{ base: 4, md: 5 }}>
+                  Soumaya recipe checker
                 </Heading>
                 <Input
                   bg={"#FFF"}
@@ -40,14 +42,16 @@ const RecipesPage = () => {
                   placeholder="Seach recipes"
                   value={searchTerm}
                   onChange={handleSearch}
+                  maxW={{ base: "100%", md: "500px" }}
+                  mx={{ base: 2, md: 0 }}
                 />
               </form>
             </Flex>
             <RecipeList recipes={searchResults} onSelect={setSelectedRecipe} />
-          </div>
+          </Box>
         )}
       </Flex>
-    </Center>
+    </Box>
   );
 };
 
